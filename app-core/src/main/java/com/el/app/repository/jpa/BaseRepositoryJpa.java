@@ -109,55 +109,60 @@ public class BaseRepositoryJpa<T extends BaseModel, ID extends Serializable> imp
 
 	@Override
 	public void delete(T model) {
-
+		if (model != null) {
+			entityManager.remove(model);
+		}
 	}
 
 	@Override
 	public void refresh(T model) {
-		// TODO Auto-generated method stub
+		if (model != null) {
+			entityManager.refresh(model);
+		}
 
 	}
 
 	@Override
 	public void refresh(T model, LockModeType lockModeType) {
-		// TODO Auto-generated method stub
-
+		if (model != null) {
+			if (lockModeType != null) {
+				entityManager.refresh(model, lockModeType);
+			} else {
+				entityManager.refresh(model);
+			}
+		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ID getIdentifier(T model) {
-		// TODO Auto-generated method stub
-		return null;
+		Assert.notNull(model);
+		return (ID) entityManager.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(model);
 	}
 
 	@Override
 	public boolean isManaged(T model) {
-		// TODO Auto-generated method stub
-		return false;
+		return entityManager.contains(model);
 	}
 
 	@Override
 	public void detach(T model) {
-		// TODO Auto-generated method stub
-
+		entityManager.detach(model);
 	}
 
 	@Override
 	public void lock(T model, LockModeType lockModeType) {
-		// TODO Auto-generated method stub
-
+		entityManager.lock(model, lockModeType);
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-
+		entityManager.clear();
 	}
 
 	@Override
 	public void flush() {
-		// TODO Auto-generated method stub
-
+		entityManager.flush();
 	}
 
 	protected List<T> findList(CriteriaQuery<T> criteriaQuery, Integer first, Integer count, List<Filter> filters, List<Sort> sorts) {
