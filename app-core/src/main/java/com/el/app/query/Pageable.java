@@ -10,6 +10,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.el.app.query.Sort.Direction;
 
 public class Pageable implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	private static final int DEFAULT_PAGE_NUMBER = 1;
@@ -26,13 +27,13 @@ public class Pageable implements Serializable {
 
 	private String searchValue;
 
-	private String orderProperty;
+	private String sortProperty;
 
-	private Direction orderDirection;
+	private Direction sortDirection;
 
 	private List<Filter> filters = new ArrayList<Filter>();
 
-	private List<Sort> orders = new ArrayList<Sort>();
+	private List<Sort> sorts = new ArrayList<Sort>();
 
 	public Pageable() {
 	}
@@ -84,20 +85,20 @@ public class Pageable implements Serializable {
 		this.searchValue = searchValue;
 	}
 
-	public String getOrderProperty() {
-		return orderProperty;
+	public String getSortProperty() {
+		return sortProperty;
 	}
 
-	public void setOrderProperty(String orderProperty) {
-		this.orderProperty = orderProperty;
+	public void setSortProperty(String sortProperty) {
+		this.sortProperty = sortProperty;
 	}
 
-	public Direction getOrderDirection() {
-		return orderDirection;
+	public Direction getSortDirection() {
+		return sortDirection;
 	}
 
-	public void setOrderDirection(Direction orderDirection) {
-		this.orderDirection = orderDirection;
+	public void setSortDirection(Direction sortDirection) {
+		this.sortDirection = sortDirection;
 	}
 
 	public List<Filter> getFilters() {
@@ -108,12 +109,12 @@ public class Pageable implements Serializable {
 		this.filters = filters;
 	}
 
-	public List<Sort> getOrders() {
-		return orders;
+	public List<Sort> getSorts() {
+		return sorts;
 	}
 
-	public void setOrders(List<Sort> orders) {
-		this.orders = orders;
+	public void setSorts(List<Sort> sorts) {
+		this.sorts = sorts;
 	}
 
 	@Override
@@ -128,12 +129,14 @@ public class Pageable implements Serializable {
 			return true;
 		}
 		Pageable other = (Pageable) obj;
-		return new EqualsBuilder().append(getPageNumber(), other.getPageNumber()).append(getPageSize(), other.getPageSize()).append(getSearchProperty(), other.getSearchProperty()).append(getSearchValue(), other.getSearchValue()).append(getOrderProperty(), other.getOrderProperty()).append(getOrderDirection(), other.getOrderDirection()).append(getFilters(), other.getFilters())
-				.append(getOrders(), other.getOrders()).isEquals();
+		return new EqualsBuilder().append(getPageNumber(), other.getPageNumber()).append(getPageSize(), other.getPageSize()).append(getSearchProperty(), other.getSearchProperty())
+				.append(getSearchValue(), other.getSearchValue()).append(getSortProperty(), other.getSortProperty()).append(getSortDirection(), other.getSortDirection())
+				.append(getFilters(), other.getFilters()).append(getSorts(), other.getSorts()).isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(getPageNumber()).append(getPageSize()).append(getSearchProperty()).append(getSearchValue()).append(getOrderProperty()).append(getOrderDirection()).append(getFilters()).append(getOrders()).toHashCode();
+		return new HashCodeBuilder(17, 37).append(getPageNumber()).append(getPageSize()).append(getSearchProperty()).append(getSearchValue()).append(getSortProperty()).append(getSortDirection())
+				.append(getFilters()).append(getSorts()).toHashCode();
 	}
 }

@@ -43,16 +43,16 @@ public class Page<T> implements Serializable {
 		return pageable.getSearchValue();
 	}
 
-	public String getOrderProperty() {
-		return pageable.getOrderProperty();
+	public String getSortProperty() {
+		return pageable.getSortProperty();
 	}
 
-	public Direction getOrderDirection() {
-		return pageable.getOrderDirection();
+	public Direction getSortDirection() {
+		return pageable.getSortDirection();
 	}
 
-	public List<Sort> getOrders() {
-		return pageable.getOrders();
+	public List<Sort> getSorts() {
+		return pageable.getSorts();
 	}
 
 	public List<Filter> getFilters() {

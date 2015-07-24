@@ -407,19 +407,19 @@ public class BaseRepositoryJpa<T extends BaseModel, ID extends Serializable> imp
 		if (!criteriaQuery.getOrderList().isEmpty()) {
 			orderList.addAll(criteriaQuery.getOrderList());
 		}
-		if (StringUtils.isNotEmpty(pageable.getOrderProperty()) && pageable.getOrderDirection() != null) {
-			if (pageable.getOrderDirection() == Direction.asc) {
-				orderList.add(criteriaBuilder.asc(root.get(pageable.getOrderProperty())));
-			} else if (pageable.getOrderDirection() == Direction.desc) {
-				orderList.add(criteriaBuilder.desc(root.get(pageable.getOrderProperty())));
+		if (StringUtils.isNotEmpty(pageable.getSortProperty()) && pageable.getSortDirection() != null) {
+			if (pageable.getSortDirection() == Direction.asc) {
+				orderList.add(criteriaBuilder.asc(root.get(pageable.getSortProperty())));
+			} else if (pageable.getSortDirection() == Direction.desc) {
+				orderList.add(criteriaBuilder.desc(root.get(pageable.getSortProperty())));
 			}
 		}
-		if (pageable.getOrders() != null) {
-			for (Sort order : pageable.getOrders()) {
-				if (order.getDirection() == Direction.asc) {
-					orderList.add(criteriaBuilder.asc(root.get(order.getProperty())));
-				} else if (order.getDirection() == Direction.desc) {
-					orderList.add(criteriaBuilder.desc(root.get(order.getProperty())));
+		if (pageable.getSorts() != null) {
+			for (Sort sort : pageable.getSorts()) {
+				if (sort.getDirection() == Direction.asc) {
+					orderList.add(criteriaBuilder.asc(root.get(sort.getProperty())));
+				} else if (sort.getDirection() == Direction.desc) {
+					orderList.add(criteriaBuilder.desc(root.get(sort.getProperty())));
 				}
 			}
 		}
