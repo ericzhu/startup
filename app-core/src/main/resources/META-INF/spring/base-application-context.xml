@@ -13,7 +13,7 @@
 
 	<description>base spring application context definitions</description>
 	<context:component-scan base-package="com.el.app.service" />
-	<context:component-scan base-package="com.el.app.dao" />
+	<context:component-scan base-package="com.el.app.repository" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

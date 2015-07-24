@@ -12,17 +12,21 @@ import javax.persistence.MappedSuperclass;
 import com.el.app.model.listener.PersistenceListener;
 
 @MappedSuperclass
-@EntityListeners({PersistenceListener.class})
+@EntityListeners({ PersistenceListener.class })
 public abstract class BaseModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String CREATE_DATE_PROPERTY_NAME = "createDate";
+
+	public static final String MODIFY_DATE_PROPERTY_NAME = "modifyDate";
 
 	protected Long id;
 	protected Date createDate;
 	protected Date modifyDate;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
