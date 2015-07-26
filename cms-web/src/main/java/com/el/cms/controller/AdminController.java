@@ -8,6 +8,7 @@ public class AdminController {
 
 	@RequestMapping("/admin")
 	public String index() {
+		System.out.println("------------ in index()");
 		return "admin/index";
 	}
 }
