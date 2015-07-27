@@ -10,6 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration("base-application-test-context.xml")
 @Transactional
 @TransactionConfiguration(defaultRollback=false)
-public class BaseIntegrationTest {
+public abstract class BaseIntegrationTest {
 	// add common methods here
 }
