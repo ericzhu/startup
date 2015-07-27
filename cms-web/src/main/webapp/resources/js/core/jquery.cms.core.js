@@ -1,46 +1,31 @@
+// create a closure
 (function($){
-	$.fn.myaccordion = function(opts) {
+	
+	// create a plugin to handle the menu display and click event
+	$.fn.accordionMenu = function(opts) {
+		
 		var settings = $.extend({
-			selectedClz:"navSelected",
-			titleTagName:"h3"
-		},opts||{});
-		var titleNode = $(this).find("ul>"+settings.titleTagName);
-		var selectedNode = $(this).find("ul."+settings.selectedClz+">"+settings.titleTagName);
-		titleNode.css("cursor","pointer");
-		titleNode.nextAll().css("display","none");
-		selectedNode.nextAll().css("display","block");
-		titleNode.click(function(){
-			var checked = $(this).parent().hasClass(settings.selectedClz);
-			if(checked) {
-				$(this).parent().removeClass(settings.selectedClz);
+			selectedClass : "navSelected",
+			submenuTitleNodeName : "h3"
+		}, opts || {});
+		
+		var submenuTitles = $(this).find("ul>" + settings.submenuTitleNodeName);
+		var selectedSubmenuTitles = $(this).find("ul." + settings.selectedClass + ">" + settings.submenuTitleNodeName);
+		
+		submenuTitles.css("cursor", "pointer");
+		submenuTitles.nextAll().css("display", "none");
+		selectedSubmenuTitles.nextAll().css("display", "block");
+		
+		// handle the click event on submenu title
+		submenuTitles.click(function(){
+			var isSelected = $(this).parent().hasClass(settings.selectedClass);
+			if(isSelected) {
 				$(this).nextAll().slideUp();
+				$(this).parent().removeClass(settings.selectedClass);
 			} else {
-				$(this).parent().addClass(settings.selectedClz);
 				$(this).nextAll().slideDown();
+				$(this).parent().addClass(settings.selectedClass);
 			}
 		});
 	};
-	
-	$.fn.trColorChange = function(opts) {
-		var settings = $.extend({
-			overClz:"trMouseover",
-			evenClz:"trEvenColor"
-		},opts||{});
-		$(this).find("tbody tr:even").addClass(settings.evenClz);
-		$(this).find("tbody tr").on("mouseenter mouseleave",function(){
-			$(this).toggleClass(settings.overClz);
-		});
-	};
-	
-	$.fn.confirmOperator = function(opts) {
-		var settings = $.extend({
-			msg:"该操作不可逆，确定进行该操作吗？",
-			eventName:"click"
-		},opts||{});
-		$(this).on(settings.eventName,function(event){
-			if(!confirm(settings.msg)) {
-				event.preventDefault();
-			}
-		});
-	}
 })(jQuery)
