@@ -7,9 +7,9 @@
 </head>
 	<frameset cols="*" rows="110,*" frameborder="0" noresize frameSpacing="0">
 		<frame name="top" src="<%=request.getContextPath() %>/jsp/admin/top.jsp" frameborder="0" frameSpacing="0"/>
-		<frameset cols="164,*" frameborder="0" frameSpacing="0">
-			<frame name="nav" src="<%=request.getContextPath() %>/jsp/admin/nav.jsp" frameborder="0"/>
-			<frame name="content" src="<%=request.getContextPath() %>/resources/admin/01.html" frameborder="0"/>
+		<frameset cols="166,*" frameborder="0" frameSpacing="0">
+			<frame name="nav" src="<%=request.getContextPath() %>/jsp/admin/nav.jsp" frameborder="0" frameSpacing="0"/>
+			<frame name="content" src="<%=request.getContextPath() %>/resources/admin/01.html" frameborder="0" frameSpacing="0"/>
 		</frameset>
 	</frameset>
 </html>
